@@ -49,8 +49,8 @@ public class VerduleriaController {
 	}
 	
 	@GetMapping
-	private ResponseEntity<List<Verdura>> findAll(Pageable pageable) {
+	private ResponseEntity<Page<Verdura>> findAll(Pageable pageable) {
 		Page<Verdura> pag = verduleriaRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), pageable.getSortOr(Sort.by(Direction.ASC, "precio"))));
-		return ResponseEntity.ok(pag.getContent());
+		return ResponseEntity.ok(pag);
 	}
 }
